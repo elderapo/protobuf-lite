@@ -6,7 +6,7 @@
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/yusq4o62o5fdhwgs?svg=true)](https://ci.appveyor.com/project/elderapo/protobuf-lite)
 [![Coveralls](https://img.shields.io/coveralls/elderapo/protobuf-lite.svg)](https://coveralls.io/github/elderapo/protobuf-lite)
 [![Dev Dependencies](https://david-dm.org/elderapo/protobuf-lite/dev-status.svg)](https://david-dm.org/elderapo/protobuf-lite?type=dev)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Felderapo%2Fprotobuf-lite.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Felderapo%2Fprotobuf-lite?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Felderapo%2Fprotobuf-lite.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Felderapo%2Fprotobuf-lite?ref=badge_large)
 
 Minimalistic library for easy, fast and optimal serialization/deserialization of data to binary format. Under the hood uses [dcodeIO/protobuf.js](https://github.com/dcodeIO/protobuf.js) and some magic 🧙.
 
