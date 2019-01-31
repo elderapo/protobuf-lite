@@ -9,10 +9,10 @@
   "files": [
     "dist"
   ],
-  "author": "Tomasz Martysk <tomek@martynski.pl>",
+  "author": "Tomasz Martyński <tomek@martynski.pl>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/elderapo/protobuf-lite"
+    "url": "git+https://github.com/elderapo/protobuf-lite.git"
   },
   "license": "MIT",
   "engines": {
@@ -135,5 +135,13 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "bugs": {
+    "url": "https://github.com/elderapo/protobuf-lite/issues"
+  },
+  "homepage": "https://github.com/elderapo/protobuf-lite#readme",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
   }
 }
