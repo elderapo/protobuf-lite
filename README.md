@@ -10,7 +10,7 @@
 
 Minimalistic library for easy, fast and optimal serialization/deserialization of data to binary format. Under the hood uses [dcodeIO/protobuf.js](https://github.com/dcodeIO/protobuf.js) and some magic 🧙.
 
-Mainly was created because [dcodeIO/protobuf.js](https://github.com/dcodeIO/protobuf.js) requires a lot of boilerplate and doesn't support native js `Date` object serialization/deserialization.
+Mainly was created because [dcodeIO/protobuf.js](https://github.com/dcodeIO/protobuf.js) requires a lot of boilerplate and doesn't support native js `Date` object serialization/deserialization. It recovers all the prototypes on deserialized properties and arrays so it's possible to perform `decoded instanceof OriginalClass` checks.
 
 ### How to install
 
@@ -72,7 +72,7 @@ expect(decoded.birthDate.getTime()).toBe(new Date("1990").getTime());
 console.log(`Everything is working as expected 👍`);
 ```
 
-### [Check out tests for more examples!](https://github.com/elderapo/protobuf-lite/tree/master/test)
+### [Check out tests cases for more examples!](https://github.com/elderapo/protobuf-lite/tree/master/test)
 
 ## License
 
