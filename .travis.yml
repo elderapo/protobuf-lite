@@ -10,9 +10,13 @@ script:
   - yarn test:prod
   - yarn build
 after_success:
-  - yarn travis-deploy-once "yarn report-coverage"
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn travis-deploy-once "yarn deploy-docs"; fi
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then yarn travis-deploy-once "yarn semantic-release"; fi
+  - yarn report-coverage
+  - yarn deploy-docs
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+    - npx semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
