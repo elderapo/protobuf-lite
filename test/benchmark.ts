@@ -1,6 +1,6 @@
 import { Field, Type } from "protobufjs";
 import "reflect-metadata";
-import { decode, encode, ProtobufLiteProperty } from "../src/protobuf-lite";
+import { decode, encode, ProtobufLiteProperty } from "../src";
 import { newSuite } from "./benchmarkSute";
 
 class AwesomeMessage {

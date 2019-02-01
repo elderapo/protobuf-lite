@@ -1,4 +1,4 @@
-import { decode, encode, ProtobufLiteProperty } from "../src/protobuf-lite";
+import { decode, encode, ProtobufLiteProperty } from "../src";
 
 describe("example", () => {
   it("example 1", () => {

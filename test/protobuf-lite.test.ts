@@ -1,7 +1,7 @@
 import * as deepFreeze from "deep-freeze";
 import "reflect-metadata";
 import { clearAllMetadata } from "../src/metadataHelpers";
-import { decode, encode, ProtobufLiteProperty } from "../src/protobuf-lite";
+import { decode, encode, ProtobufLiteProperty } from "../src";
 
 describe("protobuf-lite", () => {
   afterEach(() => {
