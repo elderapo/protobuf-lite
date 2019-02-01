@@ -3,7 +3,7 @@ import "reflect-metadata";
 import { ICustomFieldCodec, InternalCodecs } from "./codecs";
 import { getMetadataObject, hasMetadataObject } from "./metadataHelpers";
 import { defaultProtobufLitePropertyOptions } from "./ProtobufLiteProperty";
-import { Constructable, getPrototypeChain } from "./utils";
+import { Constructable, getPrototypeChain, ensureBuffer } from "./utils";
 
 export interface IProtobufLitePropertyOptions {
   optional?: boolean;
@@ -231,7 +231,7 @@ export class ProtobufLiteMetadata {
         payload[propertyKey] = newArray;
 
         for (let index in originalArray) {
-          newArray[index] = codec.encode(originalArray[index]);
+          newArray[index] = ensureBuffer(codec.encode(originalArray[index]));
         }
       } else {
         if (isOptional && !payload[propertyKey]) {
@@ -242,7 +242,7 @@ export class ProtobufLiteMetadata {
           throw new Error(`Required field was not provided.`);
         }
 
-        payload[propertyKey] = codec.encode(payload[propertyKey]);
+        payload[propertyKey] = ensureBuffer(codec.encode(payload[propertyKey]));
       }
     }
 
@@ -258,7 +258,7 @@ export class ProtobufLiteMetadata {
 
       if (isArray) {
         for (let index in payload[propertyKey]) {
-          payload[propertyKey][index] = codec.decode(payload[propertyKey][index]);
+          payload[propertyKey][index] = codec.decode(ensureBuffer(payload[propertyKey][index]));
         }
       } else {
         if (isOptional && !payload[propertyKey]) {
@@ -274,7 +274,7 @@ export class ProtobufLiteMetadata {
           continue;
         }
 
-        payload[propertyKey] = codec.decode(payload[propertyKey]);
+        payload[propertyKey] = codec.decode(ensureBuffer(payload[propertyKey]));
       }
     }
   }

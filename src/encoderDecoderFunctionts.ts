@@ -1,5 +1,6 @@
 import { Message } from "protobufjs";
 import { getMetadataObject, hasMetadataObject } from "./metadataHelpers";
+import { ensureBuffer } from "./utils";
 
 export const encode = <T>(MessageClass: new () => T, payload: T): Buffer => {
   if (!payload) {
@@ -21,10 +22,7 @@ export const encode = <T>(MessageClass: new () => T, payload: T): Buffer => {
     throw new Error(errMsg);
   }
 
-  const encoded: Buffer | Uint8Array = MessageClassProto.encode(payload).finish();
-
-  /* istanbul ignore next line */
-  return Buffer.isBuffer(encoded) ? encoded : Buffer.from(encoded);
+  return ensureBuffer(MessageClassProto.encode(payload).finish());
 };
 
 export const decode = <T extends Object>(MessageClass: new () => T, encoded: Buffer): T => {
