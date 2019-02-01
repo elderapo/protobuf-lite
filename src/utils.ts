@@ -18,5 +18,5 @@ export const getPrototypeChain = (Class: Function): Function[] => {
 };
 
 export const ensureBuffer = (buffer: Uint8Array | Buffer): Buffer => {
-  return Buffer.isBuffer(buffer) ? buffer : Buffer.from(buffer.buffer);
+  return Buffer.isBuffer(buffer) ? buffer : Buffer.from(buffer);
 };
