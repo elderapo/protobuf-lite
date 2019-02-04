@@ -101,9 +101,14 @@ export class ProtobufLiteMetadata {
       }
     } else {
       if (typeFromDecoratorOptions && typeFromDecoratorOptions !== type) {
-        throw new Error(
-          `Type obtained from reflect metadata and { type: () => TYPE } does not match (${typeFromDecoratorOptions} !== ${type})`
-        );
+        // "classProperty: ISomeInterface" <- most likely so we fallback to typeFromDecoratorOptions type
+        if (type === Object) {
+          type = typeFromDecoratorOptions;
+        } else {
+          throw new Error(
+            `Type obtained from reflect metadata and { type: () => TYPE } does not match (${typeFromDecoratorOptions} !== ${type})`
+          );
+        }
       }
     }
 

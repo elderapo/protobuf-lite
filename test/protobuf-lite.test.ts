@@ -387,4 +387,33 @@ describe("protobuf-lite", () => {
       }
     }).toThrowError();
   });
+
+  it("on iterface type should fallback to type obtained from decorator", () => {
+    interface IPerson {
+      name: string;
+      age: number;
+    }
+
+    class Person implements IPerson {
+      @ProtobufLiteProperty()
+      name: string;
+
+      @ProtobufLiteProperty()
+      age: number;
+    }
+
+    expect(() => {
+      class TestClassWrong {
+        @ProtobufLiteProperty()
+        person: IPerson;
+      }
+    }).toThrowError();
+
+    expect(() => {
+      class TestClassOK {
+        @ProtobufLiteProperty({ type: () => Person })
+        person: IPerson;
+      }
+    }).not.toThrowError();
+  });
 });
