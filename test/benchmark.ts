@@ -1,5 +1,5 @@
+import "@abraham/reflection";
 import { Field, Type } from "protobufjs/light";
-import "reflect-metadata";
 import { decode, encode, ProtobufLiteProperty } from "../src";
 import { newSuite } from "./benchmarkSute";
 
