@@ -29,7 +29,7 @@
     "commit": "git-cz",
     "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
-    "predo-release": "yarn build",
+    "predo-release": "yarn test:prod && yarn build",
     "do-release": "yarn report-coverage && yarn deploy-docs && yarn semantic-release"
   },
   "lint-staged": {
