@@ -1,5 +1,4 @@
 import { Field, Type } from "protobufjs";
-import "reflect-metadata";
 import { ICustomFieldCodec, InternalCodecs } from "./codecs";
 import { getMetadataObject, hasMetadataObject } from "./metadataHelpers";
 import { defaultProtobufLitePropertyOptions } from "./ProtobufLiteProperty";

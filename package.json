@@ -104,6 +104,7 @@
     "lodash.camelcase": "^4.3.0",
     "prettier": "^1.14.3",
     "prompt": "^1.0.0",
+    "reflect-metadata": "^0.1.13",
     "replace-in-file": "^3.4.2",
     "rimraf": "^2.6.2",
     "semantic-release": "^15.13.3",
@@ -118,9 +119,7 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
-    "buffer": "^5.2.1",
-    "protobufjs": "^6.8.8",
-    "reflect-metadata": "^0.1.13"
+    "protobufjs": "^6.8.8"
   },
   "husky": {
     "hooks": {

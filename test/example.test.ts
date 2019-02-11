@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { decode, encode, ProtobufLiteProperty } from "../src";
 
 describe("example", () => {
