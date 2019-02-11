@@ -21,6 +21,4 @@ jobs:
         provider: script
         skip_cleanup: true
         script:
-          - yarn report-coverage
-          - yarn deploy-docs
-          - yarn semantic-release
+          - yarn do-release
