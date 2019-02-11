@@ -3,20 +3,24 @@ cache: yarn
 notifications:
   email: false
 node_js:
+  - "8"
   - "10"
   - "11"
-  - "8"
+
 script:
+  - echo "Running tests against $(node -v) ..."
   - yarn test:prod
   - yarn build
-after_success:
-  - yarn report-coverage
-  - yarn deploy-docs
-deploy:
-  provider: script
-  skip_cleanup: true
-  script:
-    - npx semantic-release
-branches:
-  except:
-    - /^v\d+\.\d+\.\d+$/
+
+jobs:
+  include:
+    - stage: deploy
+      node_js: "11"
+      script: echo "Deploying..."
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - yarn report-coverage
+          - yarn deploy-docs
+          - yarn semantic-release
