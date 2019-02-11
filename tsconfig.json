@@ -13,7 +13,7 @@
     "strictPropertyInitialization": false,
     "declarationDir": "dist/types",
     "outDir": "dist/lib",
-    "types": ["reflect-metadata", "jest", "node", "protobufjs"]
+    "types": ["@abraham/reflection", "jest", "node", "protobufjs"]
   },
   "include": ["src"]
 }

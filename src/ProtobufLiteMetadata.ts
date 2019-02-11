@@ -33,7 +33,7 @@ interface IFieldOptions {
 
 interface IFieldInfo {
   propertyKey: string;
-  protoType: any;
+  prototype: any;
   rule: string;
 }
 
@@ -73,7 +73,11 @@ export class ProtobufLiteMetadata {
       ? Object.assign({}, defaultProtobufLitePropertyOptions, decoratorOptions)
       : defaultProtobufLitePropertyOptions;
 
-    let type = Reflect.getMetadata("design:type", targetProperty, propertyKey);
+    let type: Function = Reflect.getMetadata(
+      "design:type",
+      targetProperty,
+      propertyKey
+    ) as Function;
     let typeFromDecoratorOptions =
       decoratorOptions && decoratorOptions.type ? decoratorOptions.type() : null;
 
@@ -127,9 +131,9 @@ export class ProtobufLiteMetadata {
 
     const isChildObj = !isCodecUsed && hasMetadataObject(type);
     const jsTypeName = isCodecUsed ? "Buffer" : type.name;
-    const protoType = isChildObj ? type.name : jsToProtobufTypesMap[jsTypeName];
+    const prototype = isChildObj ? type.name : jsToProtobufTypesMap[jsTypeName];
 
-    if (!protoType) {
+    if (!prototype) {
       throw new Error(`Couldn't lookup type(${jsTypeName})!`);
     }
 
@@ -146,7 +150,7 @@ export class ProtobufLiteMetadata {
 
     this.fieldsInfo.push({
       propertyKey,
-      protoType,
+      prototype,
       rule
     });
   }
@@ -172,7 +176,7 @@ export class ProtobufLiteMetadata {
           throw new Error(`Parent class field was most likely overwrited by child class!`);
         }
 
-        t.add(new Field(field.propertyKey, fieldIndex++, field.protoType, field.rule));
+        t.add(new Field(field.propertyKey, fieldIndex++, field.prototype, field.rule));
 
         alreadyUsedPropertyKeys.set(field.propertyKey, true);
       }

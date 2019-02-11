@@ -1,4 +1,4 @@
-import "reflect-metadata";
+import "@abraham/reflection";
 import { decode, encode, ProtobufLiteProperty } from "../src";
 
 describe("example", () => {

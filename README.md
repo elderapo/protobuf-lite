@@ -15,14 +15,17 @@ Mainly was created because [dcodeIO/protobuf.js](https://github.com/dcodeIO/prot
 ### How to install
 
 ```bash
-yarn add @elderapo/protobuf-lite
+yarn add @elderapo/protobuf-lite @abraham/reflection
 # or
-npm install @elderapo/protobuf-lite
+npm install @elderapo/protobuf-lite @abraham/reflection
 ```
+
+If you are already using `reflect-metadata` package or want to use it instead of `@abraham/reflection` go ahead. I decided to use `@abraham/reflection` because its bundle is much smaller.
 
 ### Usage
 
 ```typescript
+import "@abraham/reflection";
 import { decode, encode, ProtobufLiteProperty } from "@elderapo/protobuf-lite";
 
 class Person {
