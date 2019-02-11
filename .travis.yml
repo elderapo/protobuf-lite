@@ -3,8 +3,8 @@ cache: yarn
 notifications:
   email: false
 node_js:
-  - "8"
-  - "10"
+  # - "8"
+  # - "10"
   - "11"
 
 script:
@@ -21,7 +21,8 @@ jobs:
         provider: script
         skip_cleanup: true
         script:
-          - yarn build
-          - yarn report-coverage
-          - yarn deploy-docs
-          - yarn semantic-release
+          - ls -la
+          # - yarn build
+          # - yarn report-coverage
+          # - yarn deploy-docs
+          # - yarn semantic-release
