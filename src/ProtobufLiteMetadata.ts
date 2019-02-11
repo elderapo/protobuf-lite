@@ -73,11 +73,7 @@ export class ProtobufLiteMetadata {
       ? Object.assign({}, defaultProtobufLitePropertyOptions, decoratorOptions)
       : defaultProtobufLitePropertyOptions;
 
-    let type: Function = Reflect.getMetadata(
-      "design:type",
-      targetProperty,
-      propertyKey
-    ) as Function;
+    let type = Reflect.getMetadata<Function>("design:type", targetProperty, propertyKey);
     let typeFromDecoratorOptions =
       decoratorOptions && decoratorOptions.type ? decoratorOptions.type() : null;
 
@@ -113,6 +109,11 @@ export class ProtobufLiteMetadata {
           );
         }
       }
+    }
+
+    /* istanbul ignore next line */
+    if (typeof type === "undefined") {
+      throw new Error(`"type" cannot be undefined!`);
     }
 
     let isCodecUsed: boolean = false;
