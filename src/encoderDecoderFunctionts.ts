@@ -1,4 +1,4 @@
-import { Message } from "protobufjs";
+import { Message } from "protobufjs/light";
 import { getMetadataObject, hasMetadataObject } from "./metadataHelpers";
 import { ensureBuffer } from "./utils";
 

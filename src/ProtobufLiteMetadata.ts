@@ -1,4 +1,4 @@
-import { Field, Type } from "protobufjs";
+import { Field, Type } from "protobufjs/light";
 import { ICustomFieldCodec, InternalCodecs } from "./codecs";
 import { getMetadataObject, hasMetadataObject } from "./metadataHelpers";
 import { defaultProtobufLitePropertyOptions } from "./ProtobufLiteProperty";
