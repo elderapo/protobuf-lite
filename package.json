@@ -88,7 +88,7 @@
     "@types/chalk": "^2.2.0",
     "@types/deep-freeze": "^0.1.1",
     "@types/jest": "^24.0.0",
-    "@types/node": "^10.11.0",
+    "@types/node": "^11.9.0",
     "@types/protobufjs": "^6.0.0",
     "benchmark": "^2.1.4",
     "chalk": "^2.4.2",
