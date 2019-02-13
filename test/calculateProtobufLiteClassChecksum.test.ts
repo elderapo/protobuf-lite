@@ -228,6 +228,38 @@ describe("getFieldInfo", () => {
     ]);
   });
 
+  it("should return correct fields for inhreited classes v3", () => {
+    class Parent {
+      @ProtobufLiteProperty()
+      someField: string;
+    }
+
+    class Child extends Parent {}
+    class Child1 extends Child {}
+    class Child2 extends Child1 {}
+    class Child3 extends Child1 {
+      @ProtobufLiteProperty()
+      c3: string;
+    }
+
+    expect(getFieldInfo(Child)).toMatchObject([
+      { propertyKey: "someField", prototype: "string", rule: "required" }
+    ]);
+
+    expect(getFieldInfo(Child1)).toMatchObject([
+      { propertyKey: "someField", prototype: "string", rule: "required" }
+    ]);
+
+    expect(getFieldInfo(Child2)).toMatchObject([
+      { propertyKey: "someField", prototype: "string", rule: "required" }
+    ]);
+
+    expect(getFieldInfo(Child3)).toMatchObject([
+      { propertyKey: "someField", prototype: "string", rule: "required" },
+      { propertyKey: "c3", prototype: "string", rule: "required" }
+    ]);
+  });
+
   it("should throw if child overwrites parent fields", () => {
     class Parent {
       @ProtobufLiteProperty()

@@ -1,4 +1,5 @@
 import { ProtobufLiteMetadata } from "./ProtobufLiteMetadata";
+import { getPrototypeChain } from "./utils";
 
 // dont use Reflect.defineMetadata because it's slow AF
 let weakMap = new WeakMap<Function, ProtobufLiteMetadata>();
@@ -16,5 +17,13 @@ export const getMetadataObject = (Class: Function): ProtobufLiteMetadata => {
 };
 
 export const hasMetadataObject = (Class: Function): boolean => {
-  return weakMap.has(Class);
+  const chain = getPrototypeChain(Class);
+
+  for (let prototype of chain) {
+    if (weakMap.has(prototype.constructor)) {
+      return true;
+    }
+  }
+
+  return false;
 };
