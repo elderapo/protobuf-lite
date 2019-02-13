@@ -1,8 +1,8 @@
 import { Message } from "protobufjs/light";
 import { getMetadataObject, hasMetadataObject } from "./metadataHelpers";
-import { ensureBuffer } from "./utils";
+import { ensureBuffer, Constructable } from "./utils";
 
-export const encode = <T>(MessageClass: new () => T, payload: T): Buffer => {
+export const encode = <T extends Object>(MessageClass: Constructable<T>, payload: T): Buffer => {
   if (!payload) {
     throw new Error(`Payload wasnt provided!`);
   }
@@ -25,7 +25,7 @@ export const encode = <T>(MessageClass: new () => T, payload: T): Buffer => {
   return ensureBuffer(MessageClassProto.encode(payload).finish());
 };
 
-export const decode = <T extends Object>(MessageClass: new () => T, encoded: Buffer): T => {
+export const decode = <T extends Object>(MessageClass: Constructable<T>, encoded: Buffer): T => {
   if (!hasMetadataObject(MessageClass)) {
     throw new Error(`MessageClass doesn't have protobuf lite metadata assosiated!`);
   }

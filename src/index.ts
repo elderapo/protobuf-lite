@@ -1,2 +1,3 @@
-export * from "./encoderDecoderFunctionts";
+export * from "./calculateProtobufLiteClassChecksum";
+export * from "./encoderDecoderFunctions";
 export * from "./ProtobufLiteProperty";

@@ -29,7 +29,7 @@ describe("protobuf-lite", () => {
       public someNumber: number;
     }
 
-    expect(() => encode(SimpleMessage, null)).toThrowError();
+    expect(() => encode(SimpleMessage, null as any)).toThrowError();
     expect(() => encode(SimpleMessage, { awesomeField: "aaa", someBoolean: true })).toThrowError();
     expect(() => encode(SimpleMessage, { awesomeField: "aaa", someNumber: 1 })).toThrowError();
     expect(() => encode(SimpleMessage, { someNumber: 111, someBoolean: true })).toThrowError();
@@ -50,7 +50,7 @@ describe("protobuf-lite", () => {
       public date: Date;
     }
 
-    expect(() => encode(SimpleMessage, null)).toThrowError();
+    expect(() => encode(SimpleMessage, null as any)).toThrowError();
 
     const encDecExpectSameResult = (payload: any) => {
       expect(decode(SimpleMessage, encode(SimpleMessage, payload))).toMatchObject(payload);

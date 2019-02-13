@@ -31,7 +31,7 @@ interface IFieldOptions {
   isArray: boolean;
 }
 
-interface IFieldInfo {
+export interface IFieldInfo {
   propertyKey: string;
   prototype: any;
   rule: string;
