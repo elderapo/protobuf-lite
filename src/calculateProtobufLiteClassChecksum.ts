@@ -12,7 +12,7 @@ export const getFieldInfo = (Class: Constructable<Object>): IFieldInfo[] => {
 
   const metadataObject = getMetadataObject(Class);
 
-  return metadataObject.getFieldsInfo();
+  return metadataObject.collectFieldsInfo();
 };
 
 export const calculateProtobufLiteClassChecksum = (Class: Constructable<Object>): string => {

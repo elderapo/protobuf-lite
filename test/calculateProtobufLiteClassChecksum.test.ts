@@ -153,6 +153,94 @@ describe("getFieldInfo", () => {
       { propertyKey: "dates", prototype: "bytes", rule: "repeated" }
     ]);
   });
+
+  it("should return correct fields for inhreited classes v1", () => {
+    class Parent {
+      @ProtobufLiteProperty()
+      someField: string;
+    }
+
+    class Child extends Parent {
+      @ProtobufLiteProperty()
+      someOtherField: string;
+    }
+
+    expect(getFieldInfo(Child)).toMatchObject([
+      { propertyKey: "someField", prototype: "string", rule: "required" },
+      { propertyKey: "someOtherField", prototype: "string", rule: "required" }
+    ]);
+  });
+
+  it("should return correct fields for inhreited classes v2", () => {
+    class C1 {
+      @ProtobufLiteProperty()
+      c1: string;
+    }
+
+    class C2 extends C1 {
+      @ProtobufLiteProperty()
+      c2: string;
+    }
+
+    class C3 extends C2 {
+      @ProtobufLiteProperty()
+      c3: string;
+    }
+
+    class C4 extends C3 {
+      @ProtobufLiteProperty()
+      c4: string;
+    }
+
+    class C5 extends C4 {
+      @ProtobufLiteProperty()
+      c5: string;
+    }
+
+    expect(getFieldInfo(C1)).toMatchObject([
+      { propertyKey: "c1", prototype: "string", rule: "required" }
+    ]);
+
+    expect(getFieldInfo(C2)).toMatchObject([
+      { propertyKey: "c1", prototype: "string", rule: "required" },
+      { propertyKey: "c2", prototype: "string", rule: "required" }
+    ]);
+
+    expect(getFieldInfo(C3)).toMatchObject([
+      { propertyKey: "c1", prototype: "string", rule: "required" },
+      { propertyKey: "c2", prototype: "string", rule: "required" },
+      { propertyKey: "c3", prototype: "string", rule: "required" }
+    ]);
+
+    expect(getFieldInfo(C4)).toMatchObject([
+      { propertyKey: "c1", prototype: "string", rule: "required" },
+      { propertyKey: "c2", prototype: "string", rule: "required" },
+      { propertyKey: "c3", prototype: "string", rule: "required" },
+      { propertyKey: "c4", prototype: "string", rule: "required" }
+    ]);
+
+    expect(getFieldInfo(C5)).toMatchObject([
+      { propertyKey: "c1", prototype: "string", rule: "required" },
+      { propertyKey: "c2", prototype: "string", rule: "required" },
+      { propertyKey: "c3", prototype: "string", rule: "required" },
+      { propertyKey: "c4", prototype: "string", rule: "required" },
+      { propertyKey: "c5", prototype: "string", rule: "required" }
+    ]);
+  });
+
+  it("should throw if child overwrites parent fields", () => {
+    class Parent {
+      @ProtobufLiteProperty()
+      someField: string;
+    }
+
+    class Child extends Parent {
+      @ProtobufLiteProperty()
+      someField: string;
+    }
+
+    expect(() => getFieldInfo(Child)).toThrowError();
+  });
 });
 
 describe("calculateProtobufLiteClassChecksum", () => {
@@ -285,5 +373,37 @@ describe("calculateProtobufLiteClassChecksum", () => {
     expect(calculateProtobufLiteClassChecksum(C2)).not.toBe(calculateProtobufLiteClassChecksum(C1));
 
     expect(calculateProtobufLiteClassChecksum(C3)).toBe("d9d1b2e83e64f6c3f9d1ebdcc5499d04a781b89e");
+  });
+
+  it("should correctly calculate checksums for inherited classes", () => {
+    class Parent {
+      @ProtobufLiteProperty()
+      parent: string;
+    }
+
+    class Child extends Parent {
+      @ProtobufLiteProperty()
+      child: string;
+    }
+
+    class ParentAndChild {
+      @ProtobufLiteProperty()
+      parent: string;
+
+      @ProtobufLiteProperty()
+      child: string;
+    }
+
+    expect(calculateProtobufLiteClassChecksum(Parent)).not.toBe(
+      calculateProtobufLiteClassChecksum(Child)
+    );
+
+    expect(calculateProtobufLiteClassChecksum(Parent)).not.toBe(
+      calculateProtobufLiteClassChecksum(ParentAndChild)
+    );
+
+    expect(calculateProtobufLiteClassChecksum(Child)).toBe(
+      calculateProtobufLiteClassChecksum(ParentAndChild)
+    );
   });
 });

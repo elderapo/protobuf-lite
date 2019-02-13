@@ -169,28 +169,12 @@ export class ProtobufLiteMetadata {
       .filter(p => p !== this.MessageClass.prototype);
 
     let fieldIndex = 0;
-    let alreadyUsedPropertyKeys: Map<string, boolean> = new Map();
 
-    const addFields = (fields: IFieldInfo[]) => {
-      for (let field of fields) {
-        if (alreadyUsedPropertyKeys.has(field.propertyKey)) {
-          throw new Error(`Parent class field was most likely overwrited by child class!`);
-        }
+    const collectedFieldsInfo = this.collectFieldsInfo();
 
-        t.add(new Field(field.propertyKey, fieldIndex++, field.prototype, field.rule));
-
-        alreadyUsedPropertyKeys.set(field.propertyKey, true);
-      }
-    };
-
-    for (let prototype of prototypes) {
-      const mt = getMetadataObject(prototype.constructor);
-      const fields = mt.getFieldsInfo();
-
-      addFields(fields);
+    for (let fieldInfo of collectedFieldsInfo) {
+      t.add(new Field(fieldInfo.propertyKey, fieldIndex++, fieldInfo.prototype, fieldInfo.rule));
     }
-
-    addFields(this.fieldsInfo);
 
     for (let item of this.childTypes) {
       const metadata = getMetadataObject(item.MessageClass);
@@ -288,8 +272,40 @@ export class ProtobufLiteMetadata {
     }
   }
 
-  public getFieldsInfo() {
+  private getFieldsInfo() {
     return this.fieldsInfo;
+  }
+
+  public collectFieldsInfo() {
+    const prototypes = getPrototypeChain(this.MessageClass)
+      .reverse()
+      .filter(p => p !== this.MessageClass.prototype);
+
+    const alreadyUsedPropertyKeys: Map<string, boolean> = new Map();
+    const fieldsInfo: IFieldInfo[] = [];
+
+    const addFields = (fields: IFieldInfo[]) => {
+      for (let field of fields) {
+        if (alreadyUsedPropertyKeys.has(field.propertyKey)) {
+          throw new Error(`Parent class field was most likely overwrited by child class!`);
+        }
+
+        fieldsInfo.push(field);
+
+        alreadyUsedPropertyKeys.set(field.propertyKey, true);
+      }
+    };
+
+    for (let prototype of prototypes) {
+      const mt = getMetadataObject(prototype.constructor);
+      const fields = mt.getFieldsInfo();
+
+      addFields(fields);
+    }
+
+    addFields(this.fieldsInfo);
+
+    return fieldsInfo;
   }
 
   private getMessageClassName() {
