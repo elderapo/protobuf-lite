@@ -457,6 +457,10 @@
   version "9.12.3"
   resolved "https://registry.yarnpkg.com/@types/highlight.js/-/highlight.js-9.12.3.tgz#b672cfaac25cbbc634a0fd92c515f66faa18dbca"
 
+"@types/jest-diff@^20.0.0":
+  version "20.0.0"
+  resolved "https://registry.yarnpkg.com/@types/jest-diff/-/jest-diff-20.0.0.tgz#3d1acf8d25d878c3566cd13b4e4e1f4fd6640111"
+
 "@types/jest@^24.0.0":
   version "24.0.3"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.3.tgz#df8dc56565bd2d27fcbd099434f04f9891e16ab7"
