@@ -77,6 +77,11 @@ console.log(`Everything is working as expected 👍`);
 
 ### [Check out tests cases for more examples!](https://github.com/elderapo/protobuf-lite/tree/master/test)
 
+
+### Todo
+1. [ ] add possibility to manually specify protobuf types (bool, uint32 etc..)
+2. [ ] figure out if it's possible to automatically generate `*.proto` files from fields metadata
+
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Felderapo%2Fprotobuf-lite.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Felderapo%2Fprotobuf-lite?ref=badge_large)
