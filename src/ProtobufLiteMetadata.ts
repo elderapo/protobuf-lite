@@ -79,6 +79,7 @@ export class ProtobufLiteMetadata {
 
     const isArray = type === Array;
     const isSymbol = type === Symbol;
+    const isBuffer = type === Buffer;
 
     if (isSymbol) {
       throw new Error(`Sorry Symbol is not serializable...`);
@@ -131,7 +132,7 @@ export class ProtobufLiteMetadata {
     }
 
     const isChildObj = !isCodecUsed && hasMetadataObject(type);
-    const jsTypeName = isCodecUsed ? "Buffer" : type.name;
+    const jsTypeName = isCodecUsed || isBuffer ? "Buffer" : type.name;
     const prototype = isChildObj ? type.name : jsToProtobufTypesMap[jsTypeName];
 
     if (!prototype) {
