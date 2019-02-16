@@ -2,7 +2,7 @@ import { Field, Type } from "protobufjs/light";
 import { ICustomFieldCodec, InternalCodecs } from "./codecs";
 import { getMetadataObject, hasMetadataObject } from "./metadataHelpers";
 import { defaultProtobufLitePropertyOptions } from "./ProtobufLiteProperty";
-import { Constructable, getPrototypeChain, ensureBuffer } from "./utils";
+import { Constructable, ensureBuffer, getPrototypeChain } from "./utils";
 
 export interface IProtobufLitePropertyOptions {
   optional?: boolean;
@@ -14,7 +14,7 @@ export interface IRegisterPropertyOptions {
   targetProperty: Object;
   propertyKey: string;
   MessageClass: Function;
-  decoratorOptions?: IProtobufLitePropertyOptions;
+  decoratorOptions: IProtobufLitePropertyOptions;
 }
 
 const jsToProtobufTypesMap: { [key: string]: string } = {
@@ -24,7 +24,7 @@ const jsToProtobufTypesMap: { [key: string]: string } = {
   Buffer: "bytes"
 };
 
-interface IFieldOptions {
+export interface IFieldOptions {
   key: string;
   MessageClass: Function;
   decoratorOptions: IProtobufLitePropertyOptions;
@@ -33,7 +33,7 @@ interface IFieldOptions {
 
 export interface IFieldInfo {
   propertyKey: string;
-  prototype: any;
+  prototype: string;
   rule: string;
 }
 
@@ -69,10 +69,6 @@ export class ProtobufLiteMetadata {
       throw new Error("Tried to register property on wrong ProtobufLiteMetadata instance?");
     }
 
-    decoratorOptions = decoratorOptions
-      ? Object.assign({}, defaultProtobufLitePropertyOptions, decoratorOptions)
-      : defaultProtobufLitePropertyOptions;
-
     let type = Reflect.getMetadata<Function>("design:type", targetProperty, propertyKey);
     let typeFromDecoratorOptions =
       decoratorOptions && decoratorOptions.type ? decoratorOptions.type() : null;
@@ -82,11 +78,11 @@ export class ProtobufLiteMetadata {
     const isBuffer = type === Buffer;
 
     if (isSymbol) {
-      throw new Error(`Sorry Symbol is not serializable...`);
+      throw new Error(`Sorry, Symbol is not serializable...`);
     }
 
     if (isArray && decoratorOptions.optional) {
-      throw new Error(`Field cannot be optional and array at the same time!`);
+      throw new Error(`Field cannot be optional and be and array at the same time!`);
     }
 
     if (isArray) {
@@ -103,6 +99,11 @@ export class ProtobufLiteMetadata {
       if (typeFromDecoratorOptions && typeFromDecoratorOptions !== type) {
         // "classProperty: ISomeInterface" <- most likely so we fallback to typeFromDecoratorOptions type
         if (type === Object) {
+          /* istanbul ignore next line */
+          if (!typeFromDecoratorOptions) {
+            throw new Error(`For interfaces { type: () => TYPE } has to be specified in options!`);
+          }
+
           type = typeFromDecoratorOptions;
         } else {
           throw new Error(
@@ -165,10 +166,6 @@ export class ProtobufLiteMetadata {
     const className = this.getMessageClassName();
     const t = new Type(className);
 
-    const prototypes = getPrototypeChain(this.MessageClass)
-      .reverse()
-      .filter(p => p !== this.MessageClass.prototype);
-
     let fieldIndex = 0;
 
     const collectedFieldsInfo = this.collectFieldsInfo();
@@ -206,7 +203,7 @@ export class ProtobufLiteMetadata {
   }
 
   public runCustomEncoders(payload: any) {
-    // optimization so copy is not done if not needed
+    // optimization so copy is not made if not needed
     if (this.customCodecs.length === 0) {
       return payload;
     }
@@ -273,8 +270,20 @@ export class ProtobufLiteMetadata {
     }
   }
 
-  private getFieldsInfo() {
+  public getFieldsInfo() {
     return this.fieldsInfo;
+  }
+
+  public getChildTypes() {
+    return this.childTypes;
+  }
+
+  public getMessageClass() {
+    return this.MessageClass;
+  }
+
+  public getMessageClassName() {
+    return this.MessageClass.name;
   }
 
   public collectFieldsInfo() {
@@ -307,9 +316,5 @@ export class ProtobufLiteMetadata {
     addFields(this.fieldsInfo);
 
     return fieldsInfo;
-  }
-
-  private getMessageClassName() {
-    return this.MessageClass.name;
   }
 }

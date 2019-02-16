@@ -1,13 +1,8 @@
 import "@abraham/reflection";
-import { getFieldInfo, ProtobufLiteProperty } from "../src";
+import { ProtobufLiteProperty } from "../src";
+import { getMetadataObject } from "../src/metadataHelpers";
 
-describe("getFieldInfo", () => {
-  it("should throw if provided class with no metadata", () => {
-    class C1 {}
-
-    expect(() => getFieldInfo(C1)).toThrowError();
-  });
-
+describe("getMetadataObject(XXX).getFieldInfo", () => {
   it("should return correct fields for strings", () => {
     class C1 {
       @ProtobufLiteProperty()
@@ -24,15 +19,15 @@ describe("getFieldInfo", () => {
       names: string[];
     }
 
-    expect(getFieldInfo(C1)).toMatchObject([
+    expect(getMetadataObject(C1).collectFieldsInfo()).toMatchObject([
       { propertyKey: "name", prototype: "string", rule: "required" }
     ]);
 
-    expect(getFieldInfo(C2)).toMatchObject([
+    expect(getMetadataObject(C2).collectFieldsInfo()).toMatchObject([
       { propertyKey: "name", prototype: "string", rule: "optional" }
     ]);
 
-    expect(getFieldInfo(C3)).toMatchObject([
+    expect(getMetadataObject(C3).collectFieldsInfo()).toMatchObject([
       { propertyKey: "names", prototype: "string", rule: "repeated" }
     ]);
   });
@@ -53,15 +48,15 @@ describe("getFieldInfo", () => {
       ages: number[];
     }
 
-    expect(getFieldInfo(C1)).toMatchObject([
+    expect(getMetadataObject(C1).collectFieldsInfo()).toMatchObject([
       { propertyKey: "age", prototype: "int32", rule: "required" }
     ]);
 
-    expect(getFieldInfo(C2)).toMatchObject([
+    expect(getMetadataObject(C2).collectFieldsInfo()).toMatchObject([
       { propertyKey: "age", prototype: "int32", rule: "optional" }
     ]);
 
-    expect(getFieldInfo(C3)).toMatchObject([
+    expect(getMetadataObject(C3).collectFieldsInfo()).toMatchObject([
       { propertyKey: "ages", prototype: "int32", rule: "repeated" }
     ]);
   });
@@ -82,15 +77,15 @@ describe("getFieldInfo", () => {
       isTrues: boolean[];
     }
 
-    expect(getFieldInfo(C1)).toMatchObject([
+    expect(getMetadataObject(C1).collectFieldsInfo()).toMatchObject([
       { propertyKey: "isTrue", prototype: "bool", rule: "required" }
     ]);
 
-    expect(getFieldInfo(C2)).toMatchObject([
+    expect(getMetadataObject(C2).collectFieldsInfo()).toMatchObject([
       { propertyKey: "isTrue", prototype: "bool", rule: "optional" }
     ]);
 
-    expect(getFieldInfo(C3)).toMatchObject([
+    expect(getMetadataObject(C3).collectFieldsInfo()).toMatchObject([
       { propertyKey: "isTrues", prototype: "bool", rule: "repeated" }
     ]);
   });
@@ -111,15 +106,15 @@ describe("getFieldInfo", () => {
       buffers: Buffer[];
     }
 
-    expect(getFieldInfo(C1)).toMatchObject([
+    expect(getMetadataObject(C1).collectFieldsInfo()).toMatchObject([
       { propertyKey: "buffer", prototype: "bytes", rule: "required" }
     ]);
 
-    expect(getFieldInfo(C2)).toMatchObject([
+    expect(getMetadataObject(C2).collectFieldsInfo()).toMatchObject([
       { propertyKey: "buffer", prototype: "bytes", rule: "optional" }
     ]);
 
-    expect(getFieldInfo(C3)).toMatchObject([
+    expect(getMetadataObject(C3).collectFieldsInfo()).toMatchObject([
       { propertyKey: "buffers", prototype: "bytes", rule: "repeated" }
     ]);
   });
@@ -140,15 +135,15 @@ describe("getFieldInfo", () => {
       dates: Date[];
     }
 
-    expect(getFieldInfo(C1)).toMatchObject([
+    expect(getMetadataObject(C1).collectFieldsInfo()).toMatchObject([
       { propertyKey: "date", prototype: "bytes", rule: "required" }
     ]);
 
-    expect(getFieldInfo(C2)).toMatchObject([
+    expect(getMetadataObject(C2).collectFieldsInfo()).toMatchObject([
       { propertyKey: "date", prototype: "bytes", rule: "optional" }
     ]);
 
-    expect(getFieldInfo(C3)).toMatchObject([
+    expect(getMetadataObject(C3).collectFieldsInfo()).toMatchObject([
       { propertyKey: "dates", prototype: "bytes", rule: "repeated" }
     ]);
   });
@@ -164,7 +159,7 @@ describe("getFieldInfo", () => {
       someOtherField: string;
     }
 
-    expect(getFieldInfo(Child)).toMatchObject([
+    expect(getMetadataObject(Child).collectFieldsInfo()).toMatchObject([
       { propertyKey: "someField", prototype: "string", rule: "required" },
       { propertyKey: "someOtherField", prototype: "string", rule: "required" }
     ]);
@@ -196,29 +191,29 @@ describe("getFieldInfo", () => {
       c5: string;
     }
 
-    expect(getFieldInfo(C1)).toMatchObject([
+    expect(getMetadataObject(C1).collectFieldsInfo()).toMatchObject([
       { propertyKey: "c1", prototype: "string", rule: "required" }
     ]);
 
-    expect(getFieldInfo(C2)).toMatchObject([
+    expect(getMetadataObject(C2).collectFieldsInfo()).toMatchObject([
       { propertyKey: "c1", prototype: "string", rule: "required" },
       { propertyKey: "c2", prototype: "string", rule: "required" }
     ]);
 
-    expect(getFieldInfo(C3)).toMatchObject([
+    expect(getMetadataObject(C3).collectFieldsInfo()).toMatchObject([
       { propertyKey: "c1", prototype: "string", rule: "required" },
       { propertyKey: "c2", prototype: "string", rule: "required" },
       { propertyKey: "c3", prototype: "string", rule: "required" }
     ]);
 
-    expect(getFieldInfo(C4)).toMatchObject([
+    expect(getMetadataObject(C4).collectFieldsInfo()).toMatchObject([
       { propertyKey: "c1", prototype: "string", rule: "required" },
       { propertyKey: "c2", prototype: "string", rule: "required" },
       { propertyKey: "c3", prototype: "string", rule: "required" },
       { propertyKey: "c4", prototype: "string", rule: "required" }
     ]);
 
-    expect(getFieldInfo(C5)).toMatchObject([
+    expect(getMetadataObject(C5).collectFieldsInfo()).toMatchObject([
       { propertyKey: "c1", prototype: "string", rule: "required" },
       { propertyKey: "c2", prototype: "string", rule: "required" },
       { propertyKey: "c3", prototype: "string", rule: "required" },
@@ -241,19 +236,19 @@ describe("getFieldInfo", () => {
       c3: string;
     }
 
-    expect(getFieldInfo(Child)).toMatchObject([
+    expect(getMetadataObject(Child).collectFieldsInfo()).toMatchObject([
       { propertyKey: "someField", prototype: "string", rule: "required" }
     ]);
 
-    expect(getFieldInfo(Child1)).toMatchObject([
+    expect(getMetadataObject(Child1).collectFieldsInfo()).toMatchObject([
       { propertyKey: "someField", prototype: "string", rule: "required" }
     ]);
 
-    expect(getFieldInfo(Child2)).toMatchObject([
+    expect(getMetadataObject(Child2).collectFieldsInfo()).toMatchObject([
       { propertyKey: "someField", prototype: "string", rule: "required" }
     ]);
 
-    expect(getFieldInfo(Child3)).toMatchObject([
+    expect(getMetadataObject(Child3).collectFieldsInfo()).toMatchObject([
       { propertyKey: "someField", prototype: "string", rule: "required" },
       { propertyKey: "c3", prototype: "string", rule: "required" }
     ]);
@@ -270,6 +265,6 @@ describe("getFieldInfo", () => {
       someField: string;
     }
 
-    expect(() => getFieldInfo(Child)).toThrowError();
+    expect(() => getMetadataObject(Child).collectFieldsInfo()).toThrowError();
   });
 });

@@ -12,6 +12,10 @@ export const ProtobufLiteProperty = (decoratorOptions?: IProtobufLitePropertyOpt
   const MessageClass = targetProperty.constructor;
   const metadata = getMetadataObject(MessageClass);
 
+  decoratorOptions = decoratorOptions
+    ? Object.assign({}, defaultProtobufLitePropertyOptions, decoratorOptions)
+    : defaultProtobufLitePropertyOptions;
+
   metadata.registerProperty({
     targetProperty,
     propertyKey,
