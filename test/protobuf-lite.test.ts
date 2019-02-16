@@ -275,6 +275,58 @@ describe("protobuf-lite", () => {
     expect(() => decode(ParentNotOptional, shapeWithOptionalEncoded)).toThrowError();
   });
 
+  it("should correctly encode/decode messages managed with different classes as long as thier field types match", () => {
+    class Class1 {
+      @ProtobufLiteProperty()
+      public a: string;
+
+      @ProtobufLiteProperty()
+      public b: number;
+
+      @ProtobufLiteProperty()
+      public c: boolean;
+
+      @ProtobufLiteProperty()
+      public d: Date;
+
+      @ProtobufLiteProperty({ type: () => Number })
+      public e: number[];
+    }
+
+    class Class2 {
+      @ProtobufLiteProperty()
+      public _a: string;
+
+      @ProtobufLiteProperty()
+      public _b: number;
+
+      @ProtobufLiteProperty()
+      public _c: boolean;
+
+      @ProtobufLiteProperty()
+      public _d: Date;
+
+      @ProtobufLiteProperty({ type: () => Number })
+      public _e: number[];
+    }
+
+    const payload: Class1 = { a: "aaa", b: 123, c: true, d: new Date(), e: [1, 2, 3] };
+
+    const encoded = encode(Class1, payload);
+    const decoded = decode(Class2, encoded);
+
+    const newObject: any = {};
+
+    Object.keys(decoded).map(key => {
+      const d: any = decoded;
+      const value = d[key];
+
+      newObject[key.replace("_", "")] = value;
+    });
+
+    expect(payload).toMatchObject(newObject);
+  });
+
   it("message inheritance", () => {
     class Parent {
       @ProtobufLiteProperty()
