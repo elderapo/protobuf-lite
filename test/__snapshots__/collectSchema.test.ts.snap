@@ -1,0 +1,400 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`collectSchema(MessageClass) should return correct schema for Buffers 1`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "bytes",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for Buffers 2`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "bytes",
+      "rule": "optional",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for Buffers 3`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "bytes",
+      "rule": "repeated",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for Dates 1`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "bytes",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for Dates 2`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "bytes",
+      "rule": "optional",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for Dates 3`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "bytes",
+      "rule": "repeated",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for booleans 1`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "bool",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for booleans 2`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "bool",
+      "rule": "optional",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for booleans 3`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "bool",
+      "rule": "repeated",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for inhreited classes v1 1`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for inhreited classes v2 1`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for inhreited classes v2 2`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for inhreited classes v2 3`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for inhreited classes v2 4`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for inhreited classes v2 5`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for inhreited classes v3 1`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for inhreited classes v3 2`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for inhreited classes v3 3`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for inhreited classes v3 4`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for nestedClasses 1`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "__ref__0__",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "__ref__0__",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "__ref__0__",
+      "rule": "required",
+    },
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [
+    Array [
+      Object {
+        "prototype": "__ref__1__",
+        "rule": "required",
+      },
+      Object {
+        "prototype": "string",
+        "rule": "required",
+      },
+    ],
+    Array [
+      Object {
+        "prototype": "__ref__2__",
+        "rule": "required",
+      },
+      Object {
+        "prototype": "string",
+        "rule": "required",
+      },
+    ],
+    Array [
+      Object {
+        "prototype": "string",
+        "rule": "required",
+      },
+    ],
+  ],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for numbers 1`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "int32",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for numbers 2`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "int32",
+      "rule": "optional",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for numbers 3`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "int32",
+      "rule": "repeated",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for strings 1`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "required",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for strings 2`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "optional",
+    },
+  ],
+  "refs": Array [],
+}
+`;
+
+exports[`collectSchema(MessageClass) should return correct schema for strings 3`] = `
+Object {
+  "fieldsInfo": Array [
+    Object {
+      "prototype": "string",
+      "rule": "repeated",
+    },
+  ],
+  "refs": Array [],
+}
+`;
