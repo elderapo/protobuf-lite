@@ -1,4 +1,3 @@
-import * as objectHash from "object-hash";
 import { getMetadataObject, hasMetadataObject } from "./metadataHelpers";
 import { IFieldInfo } from "./ProtobufLiteMetadata";
 import { Constructable } from "./utils";
@@ -13,10 +12,4 @@ export const getFieldInfo = (Class: Constructable<Object>): IFieldInfo[] => {
   const metadataObject = getMetadataObject(Class);
 
   return metadataObject.collectFieldsInfo();
-};
-
-export const calculateProtobufLiteClassChecksum = (Class: Constructable<Object>): string => {
-  const fieldsInfo = getFieldInfo(Class);
-
-  return objectHash(fieldsInfo);
 };
