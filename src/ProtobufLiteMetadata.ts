@@ -278,10 +278,6 @@ export class ProtobufLiteMetadata {
     return this.childTypes;
   }
 
-  public getMessageClass() {
-    return this.MessageClass;
-  }
-
   public getMessageClassName() {
     return this.MessageClass.name;
   }

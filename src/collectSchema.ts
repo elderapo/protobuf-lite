@@ -74,7 +74,6 @@ export const collectSchema = (MessageClass: Function): ISchema => {
 
   handleChildTypes(metadata.getChildTypes());
 
-  // const MessageClass = metadata.getMessageClass();
   const prototypes = getPrototypeChain(MessageClass)
     .reverse()
     .filter(p => p !== MessageClass.prototype);
