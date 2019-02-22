@@ -242,6 +242,38 @@ describe("protobuf-lite", () => {
     expect(decoded.datesArray[2]).toBeInstanceOf(Date);
   });
 
+  it("should correctly encode/decoded enums", () => {
+    enum NormalEnum {
+      Value1,
+      Value2
+    }
+
+    enum StringEnum {
+      Value1 = "aaa",
+      Value2 = "bbb"
+    }
+
+    class SimpleMessage {
+      @ProtobufLiteProperty()
+      public normalEnum: NormalEnum;
+
+      @ProtobufLiteProperty()
+      public stringEnum: StringEnum;
+    }
+
+    const payload: SimpleMessage = {
+      normalEnum: NormalEnum.Value2,
+      stringEnum: StringEnum.Value1
+    };
+
+    const encoded = encode(SimpleMessage, payload);
+    const decoded = decode(SimpleMessage, encoded);
+
+    expect(decoded).toMatchObject(payload);
+    expect(decoded.normalEnum).toBe(NormalEnum.Value2);
+    expect(decoded.stringEnum).toBe(StringEnum.Value1);
+  });
+
   it("should respect required/optional fields", () => {
     class TestClass {
       @ProtobufLiteProperty({ optional: true })
