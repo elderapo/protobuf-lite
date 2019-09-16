@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@abraham/reflection": "^0.5.1",
-    "@commitlint/cli": "^8.0.0",
+    "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^7.1.2",
     "@types/benchmark": "^1.0.31",
     "@types/deep-freeze": "^0.1.1",
