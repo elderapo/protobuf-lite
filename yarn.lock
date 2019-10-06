@@ -2,9 +2,10 @@
 # yarn lockfile v1
 
 
-"@abraham/reflection@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@abraham/reflection/-/reflection-0.5.1.tgz#5223015a3875462dcf2b03edc8e70f1aad7af941"
+"@abraham/reflection@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@abraham/reflection/-/reflection-0.6.0.tgz#6ad5776620298550a2a9aaa064d619baee75ba6e"
+  integrity sha512-6YiTkoiDg3P5MHOa1bSGQzXwL8R1iN5anRjcKG8G/ftaw2BwtjJ8iX4Fq7IQ7jkBy/fSpE7SaY0nUY+LPWLlHw==
 
 "@babel/code-frame@^7.0.0":
   version "7.0.0"
@@ -138,10 +139,10 @@
     resolve-from "5.0.0"
     resolve-global "1.0.0"
 
-"@commitlint/config-conventional@^8.0.0":
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-8.0.0.tgz#f45349cab9dcfc08a30fbcf2b6317506e17bc8e6"
-  integrity sha512-umg1irroowOV+x8oZPBw8woCogZO5MFKUYQq+fRZvhowoSwDHXYILP3ETcdHUgvytw/K/a8Xvu7iCypK6oZQ+g==
+"@commitlint/config-conventional@^7.1.2":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-7.6.0.tgz#f3dc66bf39e3b627fdd6f5ac3d0510dd0dd38f94"
+  integrity sha512-1Gnv5p3tc1VsEK25oTIRBO86czLtX6s/jeLNPAQRzdCnyEmsxkbx/sfoUJ1dwv7v8W++xckVnnuvdZv2Hp8yCw==
 
 "@commitlint/ensure@^8.0.0":
   version "8.0.0"
@@ -4657,19 +4658,17 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-<<<<<<< HEAD
-opencollective-postinstall@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
-  integrity sha512-pVOEP16TrAO2/fjej1IdOyupJY8KDUM1CvsaScRbw6oddvpQoOfGk4ywha0HKKVAD6RkW4x6Q+tNBwhf3Bgpuw==
-=======
 onetime@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-5.1.0.tgz#fff0f3c91617fe62bb50189636e99ac8a6df7be5"
   integrity sha512-5NcSkPHhwTVFIQN+TUqXoS5+dlElHXdpAWu9I0HP20YOtIi+aZ0Ct82jdlILDxjLEAWwvm+qj1m6aEtsDVmm6Q==
   dependencies:
     mimic-fn "^2.1.0"
->>>>>>> master
+
+opencollective-postinstall@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
+  integrity sha512-pVOEP16TrAO2/fjej1IdOyupJY8KDUM1CvsaScRbw6oddvpQoOfGk4ywha0HKKVAD6RkW4x6Q+tNBwhf3Bgpuw==
 
 opener@^1.5.1:
   version "1.5.1"
@@ -4791,7 +4790,6 @@ p-locate@^3.0.0:
   dependencies:
     p-limit "^2.0.0"
 
-<<<<<<< HEAD
 p-locate@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-4.1.0.tgz#a3428bb7088b3a60292f66919278b7c297ad4f07"
@@ -4799,10 +4797,7 @@ p-locate@^4.1.0:
   dependencies:
     p-limit "^2.2.0"
 
-p-map@^1.0.0, p-map@^1.1.1:
-=======
 p-map@^1.0.0:
->>>>>>> master
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/p-map/-/p-map-1.2.0.tgz#e4e94f311eabbc8633a1e79908165fca26241b6b"
 
